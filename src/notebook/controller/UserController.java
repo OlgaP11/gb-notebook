@@ -28,11 +28,6 @@ public class UserController {
 
         throw new RuntimeException("User not found");
     }
-    // Другая реализация readUser
-//    public User getUserById(long id){
-//        return repository.findById(id).orElseThrow(() -> new RuntimeException("User not found."));
-//        // Вернет либо юзера, либо исключение
-//    }
 
     public List<User> getAllUsers(){
         return repository.findAll();
@@ -41,6 +36,15 @@ public class UserController {
     public boolean update (long id, User update){
         try {
             repository.update(id,update);
+            return true;
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean delete (long id){
+        try {
+            repository.delete(id);
             return true;
         }catch (Exception e) {
             throw new RuntimeException(e);

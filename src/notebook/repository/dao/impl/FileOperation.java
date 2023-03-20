@@ -1,6 +1,6 @@
-package notebook.dao.impl;
+package notebook.repository.dao.impl;
 
-import notebook.dao.Operation;
+import notebook.repository.dao.Operation;
 
 import java.io.*;
 import java.util.ArrayList;

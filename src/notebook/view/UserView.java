@@ -23,10 +23,7 @@ public class UserView {
             if (com == Commands.EXIT) return;
             switch (com) {
                 case CREATE:
-                    String firstName = prompt("Имя: ");
-                    String lastName = prompt("Фамилия: ");
-                    String phone = prompt("Номер телефона: ");
-                    userController.saveUser(new User(firstName, lastName, phone));
+                    userController.saveUser(requestData());
                     break;
                 case READ:
                     String id = prompt("Идентификатор пользователя: ");
@@ -46,12 +43,12 @@ public class UserView {
                     break;
                 case UPDATE:
                     long userId= Long.parseLong(prompt("Идентификатор пользователя: "));
-                    String userFName = prompt("Имя: ");
-                    String userLName = prompt("Фамилия: ");
-                    String userPhone = prompt("Номер телефона: ");
-                    User user = new User(userFName, userLName, userPhone);
+                    User user = requestData();
                     userController.update(userId, user);
-                    //userController.saveUser(user);
+                    break;
+                case DELETE:
+                    long delId= Long.parseLong(prompt("Идентификатор пользователя для его удаления: "));
+                    userController.delete(delId);
                     break;
             }
         }
@@ -61,5 +58,13 @@ public class UserView {
         Scanner in = new Scanner(System.in);
         System.out.print(message);
         return in.nextLine();
+    }
+
+    private User requestData(){
+        String userFName = prompt("Имя: ");
+        String userLName = prompt("Фамилия: ");
+        String userPhone = prompt("Номер телефона: ");
+        User user = new User(userFName, userLName, userPhone);
+        return user;
     }
 }

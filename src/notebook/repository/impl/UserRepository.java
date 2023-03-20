@@ -1,7 +1,7 @@
 package notebook.repository.impl;
 
-import notebook.dao.impl.FileOperation;
-import notebook.mapper.impl.UserMapper;
+import notebook.repository.dao.impl.FileOperation;
+import notebook.repository.mapper.impl.UserMapper;
 import notebook.model.User;
 import notebook.repository.GBRepository;
 
@@ -75,7 +75,23 @@ public class UserRepository implements GBRepository<User, Long> {
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        try{
+            List<User> users = findAll();
+            User delUser = users.stream().filter(u -> u.getId().equals(id)).findFirst().get();
+            for (User user: users) {
+                if (user.getId() > delUser.getId())
+                    user.setId(user.getId()-1);
+            }
+            users.remove(delUser);
+            List<String> list = new ArrayList<>();
+            for (User user: users) {
+                list.add(mapper.toInput(user));
+            }
+            operation.saveAll(list);
+            return  true;
+        } catch (Exception e){
+            throw new RuntimeException(e);
+        }
     }
 
     public UserMapper getMapper() {
