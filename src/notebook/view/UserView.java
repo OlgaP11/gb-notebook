@@ -4,8 +4,9 @@ import notebook.controller.UserController;
 import notebook.model.User;
 import notebook.util.Commands;
 
+import java.util.List;
 import java.util.Scanner;
-
+// TODO: сделать метод createUser, чтобы не было копипасты
 public class UserView {
     private final UserController userController;
 
@@ -36,6 +37,21 @@ public class UserView {
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
+                    break;
+                case LIST:
+                    List <User> users = userController.getAllUsers();
+                    for (User user: users) {
+                        System.out.println(user);
+                    }
+                    break;
+                case UPDATE:
+                    long userId= Long.parseLong(prompt("Идентификатор пользователя: "));
+                    String userFName = prompt("Имя: ");
+                    String userLName = prompt("Фамилия: ");
+                    String userPhone = prompt("Номер телефона: ");
+                    User user = new User(userFName, userLName, userPhone);
+                    userController.update(userId, user);
+                    //userController.saveUser(user);
                     break;
             }
         }

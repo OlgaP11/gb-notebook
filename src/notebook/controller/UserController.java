@@ -3,6 +3,7 @@ package notebook.controller;
 import notebook.model.User;
 import notebook.repository.GBRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -26,5 +27,23 @@ public class UserController {
         }
 
         throw new RuntimeException("User not found");
+    }
+    // Другая реализация readUser
+//    public User getUserById(long id){
+//        return repository.findById(id).orElseThrow(() -> new RuntimeException("User not found."));
+//        // Вернет либо юзера, либо исключение
+//    }
+
+    public List<User> getAllUsers(){
+        return repository.findAll();
+    }
+
+    public boolean update (long id, User update){
+        try {
+            repository.update(id,update);
+            return true;
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }
