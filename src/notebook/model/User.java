@@ -13,11 +13,6 @@ public class User {
         this.phone = phone;
     }
 
-    //    public User(String firstName, String lastName, String phone) {
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.phone = phone;
-//    }
     public User(Builder builder){
         this.firstName = builder.firstName;
         this.lastName = builder.lastName;
@@ -51,10 +46,6 @@ public class User {
         }
     }
 
-//    public User(Long id, String firstName, String lastName, String phone) {
-//        this(firstName, lastName, phone);
-//        this.id = id;
-//    }
 
     public Long getId() {
         return id;
@@ -90,6 +81,6 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("Идентафикатор: %s\nИмя: %s,\nФамилия: %s,\nТелефон: %s", id, firstName, lastName, phone);
+        return String.format("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: %s\nпїЅпїЅпїЅ: %s,\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: %s,\nпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: %s", id, firstName, lastName, phone);
     }
 }
