@@ -6,16 +6,55 @@ public class User {
     private String lastName;
     private String phone;
 
-    public User(String firstName, String lastName, String phone) {
+    public User(Long id, String firstName, String lastName, String phone) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phone = phone;
     }
 
-    public User(Long id, String firstName, String lastName, String phone) {
-        this(firstName, lastName, phone);
-        this.id = id;
+    //    public User(String firstName, String lastName, String phone) {
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.phone = phone;
+//    }
+    public User(Builder builder){
+        this.firstName = builder.firstName;
+        this.lastName = builder.lastName;
+        this.phone = builder.phone;
     }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder{
+        private String firstName;
+        private String lastName;
+        private String phone;
+
+        public Builder firstName(String firstName){
+            this.firstName = firstName;
+            return this;
+        }
+        public Builder lastName(String lastName){
+            this.lastName = lastName;
+            return this;
+        }
+        public Builder phone(String phone){
+            this.phone = phone;
+            return this;
+        }
+
+        public User build(){
+            return new User(this);
+        }
+    }
+
+//    public User(Long id, String firstName, String lastName, String phone) {
+//        this(firstName, lastName, phone);
+//        this.id = id;
+//    }
 
     public Long getId() {
         return id;

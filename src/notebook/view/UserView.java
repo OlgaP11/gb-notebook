@@ -6,7 +6,7 @@ import notebook.util.Commands;
 
 import java.util.List;
 import java.util.Scanner;
-// TODO: сделать метод createUser, чтобы не было копипасты
+
 public class UserView {
     private final UserController userController;
 
@@ -60,11 +60,18 @@ public class UserView {
         return in.nextLine();
     }
 
+//    private User requestData(){
+//        String userFName = prompt("Имя: ");
+//        String userLName = prompt("Фамилия: ");
+//        String userPhone = prompt("Номер телефона: ");
+//        User user = new User(userFName, userLName, userPhone);
+//        return user;
+//    }
     private User requestData(){
-        String userFName = prompt("Имя: ");
-        String userLName = prompt("Фамилия: ");
-        String userPhone = prompt("Номер телефона: ");
-        User user = new User(userFName, userLName, userPhone);
-        return user;
+        return User.builder()
+                .firstName(prompt("Имя: "))
+                .lastName(prompt("Фамилия: "))
+                .phone(prompt("Номер телефона: ")).build();
     }
 }
+
